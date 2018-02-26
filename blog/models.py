@@ -8,7 +8,7 @@ _MAX_SIZE = 300
 
 
 class Post(models.Model):
-    author = models.ForeignKey('auth.User')
+    author = models.ForeignKey('auth.User', on_delete= models.CASCADE)
     title = models.CharField(max_length=200)
     text = models.TextField()
     img = models.ImageField(blank=True, upload_to='images/%Y/%m/%d', verbose_name='Картинка')
