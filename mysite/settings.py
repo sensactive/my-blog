@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-#import dj_database_url
+import sqlserver_ado
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -69,17 +69,20 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'mysite.wsgi.application'
+#WSGI_APPLICATION = ''
 
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
-    }
+    'default': { 
+        'NAME': 'django_baza', 
+        'ENGINE': 'sqlserver_ado', 
+        'HOST': 'dbserver \\ ss2012', 
+        'USER': 'ba', 
+        'PASSWORD': 'babaev', 
+    } 
 }
 
 
@@ -125,5 +128,5 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
 LOGIN_REDIRECT_URL = '/'
 
-#db_from_env = dj_database_url.config(conn_max_age=500)
-#DATABASES['default'].update(db_from_env)
+db_from_env = sqlserver_ado()
+DATABASES['default'].update(db_from_env)
